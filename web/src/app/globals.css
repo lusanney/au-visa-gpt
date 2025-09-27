@@ -1,17 +1,17 @@
 /* Tie CSS tokens to Mantine color scheme attribute for SSR consistency */
-html[data-mantine-color-scheme='light'] {
-  --color-primary: #0FA3B1;
-  --color-accent: #F59E0B;
-  --background: #F7F7F5;
-  --surface: #FFFFFF;
-  --foreground: #0B1220;
+html[data-mantine-color-scheme="light"] {
+  --color-primary: #0fa3b1;
+  --color-accent: #f59e0b;
+  --background: #f7f7f5;
+  --surface: #ffffff;
+  --foreground: #0b1220;
   --muted: #637381;
-  --border: #E2E8F0;
+  --border: #e2e8f0;
 }
 
-html[data-mantine-color-scheme='dark'] {
-  --color-primary: #0FA3B1;
-  --color-accent: #F59E0B;
+html[data-mantine-color-scheme="dark"] {
+  --color-primary: #0fa3b1;
+  --color-accent: #f59e0b;
   --background: #0f172a;
   --surface: #111827;
   --foreground: #ffffff;

@@ -1,4 +1,5 @@
-import { z } from 'zod';
+import "dotenv/config";
+import { z } from "zod";
 
 const envSchema = z.object({
   DATABASE_URL: z.string().url(),
@@ -9,13 +10,9 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 export const env: Env = (() => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('dotenv').config();
   const parsed = envSchema.safeParse(process.env);
   if (!parsed.success) {
     throw new Error(`Invalid environment variables: ${parsed.error.message}`);
   }
   return parsed.data;
 })();
-
-

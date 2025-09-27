@@ -10,7 +10,7 @@ type RunPythonOptions = {
 export async function runPythonJson<T>(
   scriptRelativePath: string,
   args: string[] = [],
-  options: RunPythonOptions = {}
+  options: RunPythonOptions = {},
 ): Promise<T> {
   const pythonBin = process.env.PYTHON_BIN || "python3";
   const defaultCwd = join(process.cwd(), "..");
@@ -52,5 +52,3 @@ export async function runPythonJson<T>(
     });
   });
 }
-
-

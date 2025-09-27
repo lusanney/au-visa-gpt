@@ -1,5 +1,5 @@
-import type { NextConfig } from "next";
 import { config as loadEnv } from "dotenv";
+import type { NextConfig } from "next";
 import { resolve } from "path";
 
 // Load env from repo root so web/ can access ../.env

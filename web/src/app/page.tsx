@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
 import { Button, TextInput, Group } from "@mantine/core";
-import type { HelloRequest } from "@/shared/types/hello";
+import { useState } from "react";
+
 import { helloApi } from "@/client/hello";
+import type { HelloRequest } from "@/shared/types/hello";
 
 export default function Home() {
   const [name, setName] = useState<HelloRequest["name"]>("Van");

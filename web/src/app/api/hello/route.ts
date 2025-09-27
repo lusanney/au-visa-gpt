@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
-import type { HelloRequest } from "@/shared/types/hello";
+
 import { helloService } from "@/server/services/hello";
+import type { HelloRequest } from "@/shared/types/hello";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
