@@ -1,0 +1,24 @@
+
+# Obsidian vault noise
+au-visa-gpt-obsidian/.obsidian/workspace.json
+au-visa-gpt-obsidian/.obsidian/plugins/
+
+# Node
+node_modules/
+web/.next/
+web/out/
+web/.turbo/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

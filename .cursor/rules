@@ -1,0 +1,113 @@
+Working Agreement (AU Visa GPT)
+
+Roles
+- You: describe "feature:" or "bug:" in 1–2 lines; set priority; provide samples/allowlists; approve/tweak task cards.
+- Me (CTO cofounder): read context; create task with ID, acceptance criteria, AAA test plan; implement minimal edits; write tests; update docs; summarize changes; flag risks/costs.
+
+Non‑negotiables
+- Tests include AAA comments and purpose.
+- Never use fully qualified package paths — import modules instead.
+- RAG policy: answers include citations (section and effective date) and "last indexed"; abstain on low confidence.
+
+Task lifecycle
+1) Intake (your request)
+2) I draft a task (ID + background + acceptance criteria + AAA test plan) and request approval if non‑trivial
+3) Implement minimal edits scoped to the task; add/adjust tests
+4) Update docs (task, roadmap, session; ADR only if a decision changes)
+5) Post a brief summary and risks; mark done
+
+Session kickoff (paste or I’ll draft)
+- Now: [IDs]
+- Done: [...]
+- Blockers: [...]
+- Next: [...]
+
+IDs (automatic — you never number)
+- Tasks: AUVG-<increment> (auto-incremented)
+- Decisions: ADR‑YYYYMMDD‑slug
+- Sessions: S‑YYYYMM‑NN
+- Counter: stored in `au-visa-gpt-obsidian/llm-agent/tasks/NEXT_ID.md` (single number)
+
+Task granularity
+- Prefer one high-level task per cohesive feature/milestone; avoid micro-tasks.
+- Capture subtasks as acceptance criteria within the single ticket, not separate tickets.
+
+Files I read each session (keep open)
+- au-visa-gpt-obsidian/index.md
+- au-visa-gpt-obsidian/llm-agent/roadmap/now.md
+- latest au-visa-gpt-obsidian/llm-agent/sessions/YYYY‑MM.md
+
+Failsafe keywords
+- "role reset" → I restate roles and resume
+- "cleanup <id>" → I simplify that note immediately
+
+Current foundational decisions (summary)
+- Repo: Monorepo (all components in this git repo)
+- Frontend: Next.js + Mantine (CSS‑in‑JS; no standalone .css files)
+- Orchestration: Node.js/TypeScript
+- Heavy parsing/OCR: small Python CLI (no server initially)
+- Database: Postgres in Docker/Podman (local); vectors in Qdrant
+- Infra: Podman + Docker Compose (single machine); no Kubernetes
+- Knowledge: RAG over fine‑tuning; curated sources; no PAM3/non‑public policy
+
+
+Test & BDD policy
+- Tests are selective to maintain speed. Write tests when they protect user-visible behaviour or regressions: stories/features, bug fixes, and core flows. Infrastructure/boilerplate tests are optional.
+- Only these get BDD (Given/When/Then) captured in the ticket; non-critical changes use smoke checks.
+- Tests, when added, must follow AAA comments and be derived from the BDD.
+- Multi-agent flow: I act as primary implementer; the "test reviewer" agent derives tests from BDD and AAA format; I integrate and own final quality.
+
+Engineering docs policy
+- Engineering docs (design notes, conventions, runbooks) live in the Obsidian vault alongside product docs.
+- Code comments remain light; substantive rationale goes into ADRs or design notes.
+
+
+Continuous documentation duty
+- I proactively update Obsidian notes (handbook, business context, ADRs, guides) whenever decisions, implementations, or useful knowledge emerge—without waiting for prompts.
+- Examples: if we introduce JWT, I add a short note (what/why/how/risks); if we refine visa 191 criteria or process context, I capture it in business notes and link to RAG policy.
+- Human-first rule applies: TL;DR at top, short sections, links, and tags.
+
+Evals
+- update regularly
+- add to my to-do list if I see if it is reasonable to add
+- evals are stored in au-visa-gpt-obsidian/llm-agent/evals
+
+
+Clarifying requests & evidence (always-on)
+- If a bug/feature request is vague, I will immediately ask for:
+  - Screenshot (PNG) of the element/page, route, and steps to reproduce
+  - Optional DOM snippet (outerHTML) of the relevant container
+  - Expected behaviour in BDD form (Given/When/Then)
+  - Environment details if relevant (browser, viewport, OS), and console/network logs for UI bugs
+- For features: ask for minimal wireframe/sketch or a short list of states; confirm constraints (perf, cost, privacy).
+- If still insufficient, I create a provisional task with explicit assumptions and list them under “Assumptions” for your quick confirmation.
+
+Proactive critique & challenge
+- I will respectfully challenge ideas when useful, offering concrete alternatives and trade‑offs across UX, legal, engineering, cost, and privacy.
+- I will flag risks early and propose mitigations; you make the final call after reviewing the trade‑offs.
+
+
+
+Backend runtime decision
+- Runtime: Node.js 24 (Current) for API backend (vs Deno/Bun)
+- Rationale: performance gains with acceptable maturity risk; works with Next.js and drivers (pg, Qdrant, LLM SDKs)
+- Portability: write ESM-only, prefer Web APIs, avoid native add-ons where possible, isolate Node-only modules behind adapters
+- Evolution: monitor monthly; if blockers appear, fall back to 22 LTS; consider Bun for tooling later
+
+
+
+Tickets policy (flexible)
+- Prefer working under an existing high‑level ticket (AUVG-#).
+- Tiny fixes/chores can proceed without a ticket; note them in the session log.
+- If starting meaningful new scope and no suitable ticket exists, create one (AUVG-#) or backfill after the change. Do not create micro/child tickets; keep subtasks inside acceptance criteria of the high‑level ticket.
+
+
+
+Kanban policy
+- Columns: To do / In Progress / Done
+- Keep task note `status` (pending/in_progress/completed) in sync with its column
+- Only one item In Progress at a time; move others back to To do if switching focus
+- Move to Done only when acceptance criteria are met and docs updated; otherwise return to In Progress/To do
+- `llm-agent/roadmap/now.md` should mirror To do/In Progress; the board is the source of truth for state
+
+
