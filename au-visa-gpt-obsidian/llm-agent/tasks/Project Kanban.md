@@ -10,7 +10,7 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] [[AUVG-2]]
+
 
 
 ## Done

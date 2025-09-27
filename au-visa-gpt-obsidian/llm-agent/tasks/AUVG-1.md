@@ -1,7 +1,7 @@
 ---
 id: AUVG-1
 tags: [task, roadmap/now]
-status: in_progress
+status: done
 ---
 # Task: Init project barebones
 
@@ -17,17 +17,25 @@ Acceptance criteria:
 - Python `scripts/ocr.py` prints JSON given a file path
 - `compose.yml` with Postgres + Qdrant (ARM64) and named volumes
 - `.env.example`, `.gitignore`, and README with local steps
+ - `GET /api/hello?name=...` returns `{ message: "hello, <name> from python" }`
+ - Home page button calls API and renders message
 
 BDD (Given / When / Then):
 - Given a fresh clone
 - When I follow the README steps
 - Then the app and infra start locally without errors
+ - Given the app is running
+ - When I click “Call Python”
+ - Then I see a greeting message from Python
 
 Test plan (AAA):
 - Use smoke checks only for this milestone (no formal tests):
   - // Arrange - install deps, start compose
   - // Act - run dev server, execute ocr script
   - // Assert - home renders; script outputs JSON; DBs reachable
+  - // Arrange - app running
+  - // Act - click button
+  - // Assert - UI renders Python message
 
 Risks/Flags:
 - Network/certs could block scaffolding or image pulls; fallback paths documented
