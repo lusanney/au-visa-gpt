@@ -1,7 +1,7 @@
 ---
 id: AUVG-2
 tags: [task, roadmap/next]
-status: todo
+status: done
 ---
 # Task: Platform foundation (DB, migrations, env)
 

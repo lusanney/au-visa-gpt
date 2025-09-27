@@ -1,13 +1,9 @@
 ---
-
 kanban-plugin: board
-
 ---
 
 ## To do
 
-- [ ] [[AUVG-2]]
-- [ ] [[AUVG-3]]
 - [ ] [[AUVG-4]]
 - [ ] [[AUVG-5]]
 - [ ] [[AUVG-6]]
@@ -18,21 +14,19 @@ kanban-plugin: board
 - [ ] [[AUVG-11]]
 - [ ] [[AUVG-12]]
 
-
 ## In Progress
 
-
-
+- [ ] [[AUVG-3]]
 
 ## Done
 
 - [ ] [[AUVG-1]]
-
-
-
+- [ ] [[AUVG-2]]
 
 %% kanban:settings
+
 ```
 {"kanban-plugin":"board","list-collapse":[false,false,false]}
 ```
+
 %%
