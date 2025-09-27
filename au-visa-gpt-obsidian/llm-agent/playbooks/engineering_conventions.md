@@ -6,3 +6,4 @@
 - RAG: answers must include citation (section + effective date) and last indexed; abstain on low confidence.
 - IDs: Tasks `T-YYYYMMDD-slug-xxxx`, ADRs `ADR-YYYYMMDD-slug`, Sessions `S-YYYYMM-NN`.
 - Obsidian: commit Markdown + community-plugins.json; ignore workspace.json and .obsidian/plugins/.
+- BDD verification: after each task, verify the BDD steps (Given/When/Then) either via automated test or manual script; note verification in the task or session log.

@@ -6,6 +6,7 @@ TL;DR:
 Scope for our assistant:
 - Provide citations to Migration Act/Regs sections relevant to 191 eligibility.
 - Generate checklists based on user documents (income years, employment continuity, residency indicators).
+- Recommend additional documents from a case officer perspective when evidence is missing/weak (e.g., extra payslips, employment letters, bank statements).
 
 Not legal advice:
 - We provide information with citations and dates; abstain when not confident.
