@@ -1,7 +1,7 @@
 ---
 id: AUVG-3
 tags: [task, roadmap/next]
-status: in_progress
+status: done
 ---
 
 # Task: Frontend foundations (shell, theme, HTTP hooks)
@@ -32,6 +32,12 @@ Test plan (AAA):
 - // Arrange - render `layout` and sample pages with providers
 - // Act - navigate and trigger a sample fetch via a test hook
 - // Assert - header/nav render; dark mode toggles; hook returns typed data or error state
+
+Verification:
+
+- Given the app is running locally
+- When navigating between `Applications` and `Settings`, and forcing light/dark via system preference
+- Then the app shell remains consistent, React Query hooks return typed data for `hello`, and global error/loading pages render using Mantine components
 
 Risks/Flags:
 

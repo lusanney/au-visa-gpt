@@ -16,12 +16,11 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] [[AUVG-3]]
-
 ## Done
 
 - [ ] [[AUVG-1]]
 - [ ] [[AUVG-2]]
+- [ ] [[AUVG-3]]
 
 %% kanban:settings
 
