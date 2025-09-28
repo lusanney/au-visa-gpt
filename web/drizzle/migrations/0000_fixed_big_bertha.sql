@@ -3,7 +3,7 @@ CREATE TABLE "applications" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" integer NOT NULL,
 	"visa_code" text NOT NULL,
-	"profile" jsonb DEFAULT '{}'::jsonb NOT NULL,
+	"profile" jsonb NOT NULL,
 	"last_advice" jsonb,
 	"last_advice_at" timestamp with time zone,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
@@ -75,4 +75,4 @@ CREATE INDEX "documents_application_idx" ON "documents" USING btree ("applicatio
 CREATE UNIQUE INDEX "documents_storage_key_uidx" ON "documents" USING btree ("storage_key");--> statement-breakpoint
 CREATE UNIQUE INDEX "documents_app_sha256_uidx" ON "documents" USING btree ("application_id","sha256");--> statement-breakpoint
 CREATE INDEX "ingestion_jobs_doc_status_idx" ON "ingestion_jobs" USING btree ("document_id","status");--> statement-breakpoint
-CREATE INDEX "ocr_results_doc_created_idx" ON "ocr_results" USING btree ("document_id","created_at");
+CREATE INDEX "ocr_results_doc_created_idx" ON "ocr_results" USING btree ("document_id","created_at" DESC NULLS LAST);

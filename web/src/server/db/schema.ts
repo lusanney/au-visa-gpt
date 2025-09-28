@@ -1,13 +1,14 @@
+import type { ApplicationProfile } from "@/shared/types/application";
 import {
-  pgEnum,
-  pgTable,
-  text,
-  timestamp,
-  serial,
-  integer,
-  jsonb,
   bigint,
   index,
+  integer,
+  jsonb,
+  pgEnum,
+  pgTable,
+  serial,
+  text,
+  timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
@@ -40,7 +41,9 @@ export const applications = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     visaCode: text("visa_code").notNull(),
-    profile: jsonb("profile").default({}).notNull(),
+    profile: jsonb("profile")
+      .$type<ApplicationProfile>()
+      .notNull(),
     lastAdvice: jsonb("last_advice"),
     lastAdviceAt: timestamp("last_advice_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),

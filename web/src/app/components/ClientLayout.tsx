@@ -3,6 +3,7 @@
 import { Box } from "@mantine/core";
 import { useState } from "react";
 import { AppHeader } from "./AppHeader";
+import { BreadcrumbsBar } from "./BreadcrumbsBar";
 import { ChatDrawer } from "./ChatDrawer";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +18,10 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
           transition: "grid-template-columns 250ms ease",
         }}
       >
-        <Box>{children}</Box>
+        <Box mt="xs">
+          <BreadcrumbsBar />
+          {children}
+        </Box>
 
         <ChatDrawer open={chatOpen} onToggle={() => setChatOpen((v) => !v)} />
       </Box>
