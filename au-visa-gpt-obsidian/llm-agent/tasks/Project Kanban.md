@@ -4,7 +4,6 @@ kanban-plugin: board
 
 ## To do
 
-- [ ] [[AUVG-4]]
 - [ ] [[AUVG-5]]
 - [ ] [[AUVG-6]]
 - [ ] [[AUVG-7]]
@@ -21,6 +20,7 @@ kanban-plugin: board
 - [ ] [[AUVG-2]]
 - [ ] [[AUVG-3]]
 - [ ] [[AUVG-13]]
+- [ ] [[AUVG-4]]
 
 %% kanban:settings
 

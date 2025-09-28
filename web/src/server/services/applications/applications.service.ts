@@ -20,5 +20,5 @@ export class ApplicationsService {
   }
 }
 
-export const applicationsService = new ApplicationsService();
+const applicationsService = new ApplicationsService();
 export default applicationsService;

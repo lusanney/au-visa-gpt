@@ -16,7 +16,12 @@ export function BreadcrumbsBar() {
   const parts = (pathname || "/").split("/").filter(Boolean);
 
   const items = parts.map((part, idx) => {
-    const href = "/" + parts.slice(0, idx + 1).join("/");
+    let href = "/" + parts.slice(0, idx + 1).join("/");
+    // Special case: documents under applications should point to tabbed details
+    if (part === "documents" && parts[0] === "applications" && parts.length >= 3 && idx >= 2) {
+      const appId = parts[1];
+      href = `/applications/${appId}?tab=documents`;
+    }
     const isLast = idx === parts.length - 1;
     const label = segmentLabel(part);
     return isLast ? (
