@@ -4,11 +4,11 @@ tags: [task, roadmap/next]
 status: todo
 ---
 
-# Task: OCR pipeline (app-scoped, sync trigger + persist)
+# Task: OCR pipeline (app-scoped, enqueue + persist, reprocess)
 
 TL;DR:
 
-- Trigger OCR synchronously via an application-scoped API; capture output, persist `ocr_results`, and update a simple document/job status. No queue/worker in MVP.
+- Enqueue OCR via an application-scoped API; worker/job execution will come later. Persist `ocr_results` when processed and update a simple document/job status. Include a reprocess endpoint to enqueue again.
 
 Background:
 
@@ -16,23 +16,27 @@ Background:
 
 Acceptance criteria:
 
-- API at `web/src/app/api/applications/[id]/documents/[documentId]/ocr/route.ts` (POST) triggers OCR for that document.
-- Validate the `documentId` belongs to `application [id]`.
-- `web/src/server/python.ts` executes OCR, captures stdout/stderr, returns JSON.
-- Status transitions (minimal): pending → running → completed/failed. Retries optional or capped at 1.
-- `ocr_results` rows contain text and basic metadata (pages, confidence if available).
+- Enqueue OCR automatically on upload (AUVG-4). No user/HTTP CTA to trigger OCR.
+- Validate the `documentId` belongs to `application [id]` when creating jobs in service code.
+- `ingestion_jobs` entry is created with `type=ocr`, `status=pending` and attempt counters updated on each enqueue; reprocess will be a system action (not user-initiated).
+- Status transitions (when worker exists): pending → running → completed/failed. Retries optional or capped at 1.
+- `ocr_results` rows contain text and basic metadata (pages, confidence if available) when a job completes (handled by worker later).
 
 BDD (Given / When / Then):
 
-- Given a document in Pending OCR for application 1
-- When I POST to `/api/applications/1/documents/123/ocr`
-- Then the OCR runs, results are stored, and the document status becomes Completed (or Failed on errors)
+- Given a document for application 1
+- When it is uploaded successfully
+- Then an ingestion job is created with status Pending
+
+- Given a completed OCR exists
+- When a system reprocess is scheduled (future)
+- Then a new pending job is created (enqueued)
 
 Test plan (AAA):
 
-- // Arrange - insert a document (pending); mock Python runner for success/failure
-- // Act - call the OCR API endpoint
-- // Assert - status transitions correctly; `ocr_results` saved on success; failure sets status Failed
+- // Arrange - insert a document; clear jobs
+- // Act - call the OCR enqueue endpoint
+- // Assert - a pending job is created; calling again creates another pending job (reprocess)
 
 Risks/Flags:
 
