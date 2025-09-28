@@ -1,5 +1,5 @@
 {
-  "id": "267d9414-f109-4275-8df3-d7ef6128293e",
+  "id": "e1da9bef-7999-4343-89a1-2351ca7d4e18",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -30,8 +30,7 @@
           "name": "profile",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'{}'::jsonb"
+          "notNull": true
         },
         "last_advice": {
           "name": "last_advice",
@@ -82,8 +81,12 @@
           "name": "applications_user_id_users_id_fk",
           "tableFrom": "applications",
           "tableTo": "users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -266,8 +269,12 @@
           "name": "documents_application_id_applications_id_fk",
           "tableFrom": "documents",
           "tableTo": "applications",
-          "columnsFrom": ["application_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "application_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -382,8 +389,12 @@
           "name": "ingestion_jobs_document_id_documents_id_fk",
           "tableFrom": "ingestion_jobs",
           "tableTo": "documents",
-          "columnsFrom": ["document_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "document_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -474,7 +485,7 @@
             {
               "expression": "created_at",
               "isExpression": false,
-              "asc": true,
+              "asc": false,
               "nulls": "last"
             }
           ],
@@ -489,8 +500,12 @@
           "name": "ocr_results_document_id_documents_id_fk",
           "tableFrom": "ocr_results",
           "tableTo": "documents",
-          "columnsFrom": ["document_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "document_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -498,8 +513,12 @@
           "name": "ocr_results_job_id_ingestion_jobs_id_fk",
           "tableFrom": "ocr_results",
           "tableTo": "ingestion_jobs",
-          "columnsFrom": ["job_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "job_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }

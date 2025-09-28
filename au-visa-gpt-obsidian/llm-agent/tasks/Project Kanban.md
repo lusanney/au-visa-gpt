@@ -10,7 +10,6 @@ kanban-plugin: board
 - [ ] [[AUVG-7]]
 - [ ] [[AUVG-8]]
 - [ ] [[AUVG-9]]
-- [ ] [[AUVG-10]]
 - [ ] [[AUVG-11]]
 - [ ] [[AUVG-12]]
 
@@ -21,6 +20,7 @@ kanban-plugin: board
 - [ ] [[AUVG-1]]
 - [ ] [[AUVG-2]]
 - [ ] [[AUVG-3]]
+- [ ] [[AUVG-13]]
 
 %% kanban:settings
 

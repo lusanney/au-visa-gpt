@@ -1,33 +1,42 @@
 import "dotenv/config";
-import { eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 
 import { db, pool } from "./client";
-import { users, applications } from "./schema";
+import { applications, users } from "./schema";
 
 async function main() {
-  const defaultUserId = Number(process.env.DEFAULT_USER_ID || 1);
-  const defaultAppId = Number(process.env.DEFAULT_APPLICATION_ID || 1);
-
   const email = "owner@example.com";
 
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, defaultUserId),
-  });
+  let user = await db.query.users.findFirst({ where: eq(users.email, email) });
   if (!user) {
-    await db.insert(users).values({ id: defaultUserId, email, displayName: "Owner" });
+    const [inserted] = await db.insert(users).values({ email, displayName: "Owner" }).returning();
+    user = inserted;
   }
 
   const app = await db.query.applications.findFirst({
-    where: eq(applications.id, defaultAppId),
+    where: and(eq(applications.userId, user.id), eq(applications.visaCode, "191")),
   });
   if (!app) {
     await db.insert(applications).values({
-      id: defaultAppId,
-      userId: defaultUserId,
+      userId: user.id,
       visaCode: "191",
-      profile: {},
+      profile: {
+        fullName: "Owner",
+        email,
+        nationality: "AU",
+        dateOfBirth: "1990-01-01",
+        phone: "",
+      },
     });
   }
+
+  // Ensure sequences are in sync with max(id) to avoid duplicate key errors after manual inserts
+  await db.execute(
+    sql`select setval(pg_get_serial_sequence('public.users','id'), coalesce(max(id), 0)) from public.users;`,
+  );
+  await db.execute(
+    sql`select setval(pg_get_serial_sequence('public.applications','id'), coalesce(max(id), 0)) from public.applications;`,
+  );
 }
 
 main()
