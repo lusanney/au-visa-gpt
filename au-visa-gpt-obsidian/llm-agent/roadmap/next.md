@@ -1,7 +1,7 @@
 # Roadmap — Next
 
 - [ ] [[AUVG-2]] — Platform foundation (DB, migrations, env)
-- [ ] [[AUVG-3]] — Frontend foundations (shell, theme, HTTP hooks)
+- [x] [[AUVG-3]] — Frontend foundations (shell, theme, HTTP hooks)
 - [ ] [[AUVG-4]] — Document upload (UI + API)
 - [ ] [[AUVG-5]] — OCR pipeline (trigger + persist)
 - [ ] [[AUVG-6]] — Eligibility and required-docs checklist definitions

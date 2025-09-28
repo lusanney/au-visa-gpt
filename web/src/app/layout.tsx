@@ -1,10 +1,12 @@
+import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "@mantine/core/styles.css";
-import { MantineProvider, ColorSchemeScript, createTheme } from "@mantine/core";
 
 import { mantineThemeConfig } from "@/theme/palette";
+import { ClientLayout } from "./components/ClientLayout";
+import { QueryProvider } from "./components/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +37,9 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MantineProvider theme={theme} defaultColorScheme="auto">
-          {children}
+          <QueryProvider>
+            <ClientLayout>{children}</ClientLayout>
+          </QueryProvider>
         </MantineProvider>
       </body>
     </html>

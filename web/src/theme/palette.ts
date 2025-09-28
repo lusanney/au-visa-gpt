@@ -143,11 +143,12 @@ export const mantineThemeConfig: MantineThemeOverride = {
     xl: "20px",
   },
   shadows: {
-    xs: "0 1px 2px rgba(16, 24, 40, 0.05)",
-    sm: "0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)",
-    md: "0 4px 6px rgba(16, 24, 40, 0.1), 0 2px 4px rgba(16, 24, 40, 0.06)",
-    lg: "0 10px 15px rgba(16, 24, 40, 0.1), 0 4px 6px rgba(16, 24, 40, 0.05)",
-    xl: "0 20px 25px rgba(16, 24, 40, 0.1), 0 10px 10px rgba(16, 24, 40, 0.04)",
+    // Soft, modern shadow set
+    xs: "0 1px 2px rgba(15, 23, 42, 0.06)",
+    sm: "0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04)",
+    md: "0 4px 8px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04)",
+    lg: "0 10px 20px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(15, 23, 42, 0.04)",
+    xl: "0 20px 40px rgba(15, 23, 42, 0.08), 0 12px 16px rgba(15, 23, 42, 0.04)",
   },
   other: {
     // Expose role tokens on the theme for easy access in components
